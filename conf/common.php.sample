@@ -5,7 +5,7 @@
 <?php
 
 // MySQL / MariaDB
-$sqlhost="wekanical-db"; // may be "localhost" or some ip
+$sqlhost="localhost"; // may be "localhost" or some ip
 $sqluser="wekanical"; // username for MariaDB, ex "wekanical"
 $sqlpass=""; // generate ex via "date +%s | sha1sum"
 $sqlname="wekanicaldb"; // DB name, ex wekanicaldb
@@ -14,6 +14,5 @@ $sqltabl="wekanicaltb"; // DB table, ex wekanicaltb
 // URL schemes
 $wekan_domain="wekan.localhost.local"; // Your Wekan domain
 $wekan_ical_domain="cal.localhost.local"; // Your Calendar domain
-$wekan_docker="wekan"; // Your Wekan domain
 
 ?>
