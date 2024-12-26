@@ -39,22 +39,22 @@ $result = array();
 $auth = "Authorization: Bearer " . $token;
 
 // Get User Information
-$user = wekan_api_call("https://" . $wekan_domain, "/api/user", $auth, NULL);
+$user = wekan_api_call("https://" . $wekan_docker, "/api/user", $auth, NULL);
 
 // Get user's boards
-$boards = wekan_api_call("https://" . $wekan_domain, "/api/users/" . 
+$boards = wekan_api_call("https://" . $wekan_docker, "/api/users/" . 
     $user['_id'] . "/boards", $auth, NULL);
 
 foreach ($boards as $board) {
 
     // Get lists
-    $lists = wekan_api_call("https://" . $wekan_domain, "/api/boards/" . 
+    $lists = wekan_api_call("https://" . $wekan_docker, "/api/boards/" . 
         $board['_id'] . "/lists", $auth, NULL);
 
     foreach ($lists as $list) {
 
         // Get cards
-        $cards = wekan_api_call("https://" . $wekan_domain, "/api/boards/" . 
+        $cards = wekan_api_call("https://" . $wekan_docker, "/api/boards/" . 
             $board['_id'] . "/lists/" . $list['_id'] . "/cards", $auth, NULL);
         
         // Assign cards to swimlanes
@@ -71,17 +71,17 @@ foreach ($boards as $board) {
             }
 
             //Get card info
-            $cardinfo = wekan_api_call("https://" . $wekan_domain, 
+            $cardinfo = wekan_api_call("https://" . $wekan_docker, 
                 "/api/boards/" . $board['_id'] . "/lists/" . $list['_id'] . 
                 "/cards/" . $card['_id'], $auth, NULL);
 
             // Get Swimlane
-            $lane = wekan_api_call("https://" . $wekan_domain, "/api/boards/" .
+            $lane = wekan_api_call("https://" . $wekan_docker, "/api/boards/" .
                 $board['_id'] . "/swimlanes/" . $cardinfo['swimlaneId'], $auth,
                 NULL);
 
             // Get Checklists
-            $checklists = wekan_api_call("https://" . $wekan_domain,
+            $checklists = wekan_api_call("https://" . $wekan_docker,
                 "/api/boards/" . $board['_id'] . "/cards/" . $card['_id'] . 
                 "/checklists", $auth, NULL);
 
@@ -90,7 +90,7 @@ foreach ($boards as $board) {
             foreach ($checklists as $checklist) {
 
                 // Get checklist items
-                $clitems = wekan_api_call("https://" . $wekan_domain, 
+                $clitems = wekan_api_call("https://" . $wekan_docker, 
                     "/api/boards/" . $board['_id'] . "/cards/" . $card['_id'] .
                     "/checklists/" . $checklist['_id'], $auth, NULL);
 
@@ -144,6 +144,6 @@ $relogin = array(
         "url" => "https://" . $wekan_ical_domain));
 
 // Create ical file and return to user
-ical_create("https://" . $wekan_domain, $user['_id'], $result, $relogin);
+ical_create("https://" . $wekan_docker, $user['_id'], $result, $relogin);
 
 ?>
