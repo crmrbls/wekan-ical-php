@@ -144,6 +144,6 @@ $relogin = array(
         "url" => "https://" . $wekan_ical_domain));
 
 // Create ical file and return to user
-ical_create("https://" . $wekan_docker, $user['_id'], $result, $relogin);
+ical_create("https://" . $wekan_domain, $user['_id'], $result, $relogin);
 
 ?>
