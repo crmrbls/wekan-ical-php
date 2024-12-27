@@ -19,9 +19,9 @@ include($tpqr_path);
 use chillerlan\QRCode\{QRCode, QROptions};
 
 // Get user-input
-$username=$_POST["username"];
-$password=$_POST["password"];
-$error=$_GET['error'];
+$username = isset($_POST["username"]) ? $_POST["username"] : "";
+$password = isset($_POST["password"]) ? $_POST["password"] : "";
+$error = isset($_GET['error']) ? $_GET['error'] : "";
 
 // if username and password are provided, try to login.
 if ($username != "" && $password != "") {
